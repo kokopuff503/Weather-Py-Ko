@@ -1,0 +1,349 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "ModuleNotFoundError",
+     "evalue": "No module named 'citipy'",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mModuleNotFoundError\u001b[0m                       Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-1-d21af874bde3>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[1;32m      3\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mrequests\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      4\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mjson\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 5\u001b[0;31m \u001b[0;32mfrom\u001b[0m \u001b[0mcitipy\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mcitipy\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      6\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mos\u001b[0m \u001b[0;32mas\u001b[0m \u001b[0mos\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      7\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0mmatplotlib\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mpyplot\u001b[0m \u001b[0;32mas\u001b[0m \u001b[0mplt\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;31mModuleNotFoundError\u001b[0m: No module named 'citipy'"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import requests\n",
+    "import json\n",
+    "from citipy import citipy\n",
+    "import os as os\n",
+    "import matplotlib.pyplot as plt\n",
+    "import csv as csv\n",
+    "\n",
+    "# Google API Key\n",
+    "from config import api_key\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "lat = np.random.uniform(low=-90.00, high=90.00, size=600)\n",
+    "lon = np.random.uniform(low=-180.00, high=180.00, size=600)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "latlong = zip(lat, lon)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "NameError",
+     "evalue": "name 'citipy' is not defined",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-4-aeba4bab8052>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0mcities\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;34m[\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[0;32mfor\u001b[0m \u001b[0mc\u001b[0m \u001b[0;32min\u001b[0m \u001b[0mlatlong\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 3\u001b[0;31m     \u001b[0mcities\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mappend\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mcitipy\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mnearest_city\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mc\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;36m0\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mc\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[0;31mNameError\u001b[0m: name 'citipy' is not defined"
+     ]
+    }
+   ],
+   "source": [
+    "cities = []\n",
+    "for c in latlong:\n",
+    "    cities.append(citipy.nearest_city(c[0], c[1]))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "city_name=[]\n",
+    "for city in cities:\n",
+    "    name = city.city_name\n",
+    "    city_name.append(name)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "url = \"http://api.openweathermap.org/data/2.5/weather?\"\n",
+    "temps = []\n",
+    "humid = []\n",
+    "clouds = []\n",
+    "winds = []\n",
+    "lats = []\n",
+    "lons = []\n",
+    "names = []"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "for city in city_name:\n",
+    "    query_url = url + \"appid=\" + api_key + \"&q=\" + city + \"&units=imperial\"\n",
+    "    response = requests.get(query_url)\n",
+    "    if response.status_code == 200:\n",
+    "        response = response.json()\n",
+    "        temps.append(response[\"main\"][\"temp\"])\n",
+    "        humid.append(response[\"main\"][\"humidity\"])\n",
+    "        clouds.append(response[\"clouds\"][\"all\"])\n",
+    "        winds.append(response[\"wind\"][\"speed\"])\n",
+    "        lats.append(response[\"coord\"][\"lat\"])\n",
+    "        lons.append(response[\"coord\"][\"lon\"])\n",
+    "        names.append(response[\"name\"])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>City</th>\n",
+       "      <th>Temperature (F)</th>\n",
+       "      <th>Humidity (%)</th>\n",
+       "      <th>Cloud Coverage (%)</th>\n",
+       "      <th>Wind Speed (mph)</th>\n",
+       "      <th>Latitude</th>\n",
+       "      <th>Longitude</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "Empty DataFrame\n",
+       "Columns: [City, Temperature (F), Humidity (%), Cloud Coverage (%), Wind Speed (mph), Latitude, Longitude]\n",
+       "Index: []"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "weather = pd.DataFrame({\"City\": names,\n",
+    "                        \"Temperature (F)\": temps,\n",
+    "                        \"Humidity (%)\": humid,\n",
+    "                        \"Cloud Coverage (%)\": clouds,\n",
+    "                        \"Wind Speed (mph)\": winds,\n",
+    "                        \"Latitude\": lats, \n",
+    "                        \"Longitude\": lons\n",
+    "                       })\n",
+    "weather.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "len(weather)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "ValueError",
+     "evalue": "scatter requires x column to be numeric",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mValueError\u001b[0m                                Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-10-19975f4fcb1b>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mweather\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mplot\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mscatter\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mx\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m\"Latitude\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m\"Temperature (F)\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mtitle\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m\"Temperature per Latitude\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      2\u001b[0m \u001b[0mplt\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msavefig\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'Temp_perLat.png'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36mscatter\u001b[0;34m(self, x, y, s, c, **kwds)\u001b[0m\n\u001b[1;32m   3514\u001b[0m             ...                       colormap='viridis')\n\u001b[1;32m   3515\u001b[0m         \"\"\"\n\u001b[0;32m-> 3516\u001b[0;31m         \u001b[0;32mreturn\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mkind\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m'scatter'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mx\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mx\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0my\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mc\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mc\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0ms\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0ms\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwds\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   3517\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   3518\u001b[0m     def hexbin(self, x, y, C=None, reduce_C_function=None, gridsize=None,\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m__call__\u001b[0;34m(self, x, y, kind, ax, subplots, sharex, sharey, layout, figsize, use_index, title, grid, legend, style, logx, logy, loglog, xticks, yticks, xlim, ylim, rot, fontsize, colormap, table, yerr, xerr, secondary_y, sort_columns, **kwds)\u001b[0m\n\u001b[1;32m   2940\u001b[0m                           \u001b[0mfontsize\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mfontsize\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mcolormap\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mcolormap\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mtable\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mtable\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   2941\u001b[0m                           \u001b[0myerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0myerr\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mxerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mxerr\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0msecondary_y\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0msecondary_y\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 2942\u001b[0;31m                           sort_columns=sort_columns, **kwds)\n\u001b[0m\u001b[1;32m   2943\u001b[0m     \u001b[0m__call__\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__doc__\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mplot_frame\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__doc__\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   2944\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36mplot_frame\u001b[0;34m(data, x, y, kind, ax, subplots, sharex, sharey, layout, figsize, use_index, title, grid, legend, style, logx, logy, loglog, xticks, yticks, xlim, ylim, rot, fontsize, colormap, table, yerr, xerr, secondary_y, sort_columns, **kwds)\u001b[0m\n\u001b[1;32m   1971\u001b[0m                  \u001b[0myerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0myerr\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mxerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mxerr\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1972\u001b[0m                  \u001b[0msecondary_y\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0msecondary_y\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0msort_columns\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0msort_columns\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 1973\u001b[0;31m                  **kwds)\n\u001b[0m\u001b[1;32m   1974\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1975\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m_plot\u001b[0;34m(data, x, y, subplots, ax, kind, **kwds)\u001b[0m\n\u001b[1;32m   1738\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0misinstance\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mABCDataFrame\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1739\u001b[0m             plot_obj = klass(data, x=x, y=y, subplots=subplots, ax=ax,\n\u001b[0;32m-> 1740\u001b[0;31m                              kind=kind, **kwds)\n\u001b[0m\u001b[1;32m   1741\u001b[0m         \u001b[0;32melse\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1742\u001b[0m             raise ValueError(\"plot kind %r can only be used for data frames\"\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, data, x, y, s, c, **kwargs)\u001b[0m\n\u001b[1;32m    858\u001b[0m             \u001b[0;31m# the handling of this argument later\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    859\u001b[0m             \u001b[0ms\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;36m20\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 860\u001b[0;31m         \u001b[0msuper\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mScatterPlot\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__init__\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mx\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0ms\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0ms\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    861\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mis_integer\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mc\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;32mand\u001b[0m \u001b[0;32mnot\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcolumns\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mholds_integer\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    862\u001b[0m             \u001b[0mc\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcolumns\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mc\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, data, x, y, **kwargs)\u001b[0m\n\u001b[1;32m    802\u001b[0m             \u001b[0my\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcolumns\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0my\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    803\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mlen\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mx\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_get_numeric_data\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0;36m0\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 804\u001b[0;31m             \u001b[0;32mraise\u001b[0m \u001b[0mValueError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_kind\u001b[0m \u001b[0;34m+\u001b[0m \u001b[0;34m' requires x column to be numeric'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    805\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mlen\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0my\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_get_numeric_data\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0;36m0\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    806\u001b[0m             \u001b[0;32mraise\u001b[0m \u001b[0mValueError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_kind\u001b[0m \u001b[0;34m+\u001b[0m \u001b[0;34m' requires y column to be numeric'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;31mValueError\u001b[0m: scatter requires x column to be numeric"
+     ]
+    }
+   ],
+   "source": [
+    "weather.plot.scatter(x=\"Latitude\", y=\"Temperature (F)\", title=\"Temperature per Latitude\")\n",
+    "plt.savefig('Temp_perLat.png')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "ValueError",
+     "evalue": "scatter requires x column to be numeric",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mValueError\u001b[0m                                Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-11-9ad62516c128>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mweather\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mplot\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mscatter\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mx\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m\"Latitude\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m\"Humidity (%)\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mtitle\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m\"Humidity per Latitude\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      2\u001b[0m \u001b[0mplt\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msavefig\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'HumidityperLat.png'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36mscatter\u001b[0;34m(self, x, y, s, c, **kwds)\u001b[0m\n\u001b[1;32m   3514\u001b[0m             ...                       colormap='viridis')\n\u001b[1;32m   3515\u001b[0m         \"\"\"\n\u001b[0;32m-> 3516\u001b[0;31m         \u001b[0;32mreturn\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mkind\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m'scatter'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mx\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mx\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0my\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mc\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mc\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0ms\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0ms\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwds\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   3517\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   3518\u001b[0m     def hexbin(self, x, y, C=None, reduce_C_function=None, gridsize=None,\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m__call__\u001b[0;34m(self, x, y, kind, ax, subplots, sharex, sharey, layout, figsize, use_index, title, grid, legend, style, logx, logy, loglog, xticks, yticks, xlim, ylim, rot, fontsize, colormap, table, yerr, xerr, secondary_y, sort_columns, **kwds)\u001b[0m\n\u001b[1;32m   2940\u001b[0m                           \u001b[0mfontsize\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mfontsize\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mcolormap\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mcolormap\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mtable\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mtable\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   2941\u001b[0m                           \u001b[0myerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0myerr\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mxerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mxerr\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0msecondary_y\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0msecondary_y\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 2942\u001b[0;31m                           sort_columns=sort_columns, **kwds)\n\u001b[0m\u001b[1;32m   2943\u001b[0m     \u001b[0m__call__\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__doc__\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mplot_frame\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__doc__\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   2944\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36mplot_frame\u001b[0;34m(data, x, y, kind, ax, subplots, sharex, sharey, layout, figsize, use_index, title, grid, legend, style, logx, logy, loglog, xticks, yticks, xlim, ylim, rot, fontsize, colormap, table, yerr, xerr, secondary_y, sort_columns, **kwds)\u001b[0m\n\u001b[1;32m   1971\u001b[0m                  \u001b[0myerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0myerr\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mxerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mxerr\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1972\u001b[0m                  \u001b[0msecondary_y\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0msecondary_y\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0msort_columns\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0msort_columns\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 1973\u001b[0;31m                  **kwds)\n\u001b[0m\u001b[1;32m   1974\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1975\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m_plot\u001b[0;34m(data, x, y, subplots, ax, kind, **kwds)\u001b[0m\n\u001b[1;32m   1738\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0misinstance\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mABCDataFrame\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1739\u001b[0m             plot_obj = klass(data, x=x, y=y, subplots=subplots, ax=ax,\n\u001b[0;32m-> 1740\u001b[0;31m                              kind=kind, **kwds)\n\u001b[0m\u001b[1;32m   1741\u001b[0m         \u001b[0;32melse\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1742\u001b[0m             raise ValueError(\"plot kind %r can only be used for data frames\"\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, data, x, y, s, c, **kwargs)\u001b[0m\n\u001b[1;32m    858\u001b[0m             \u001b[0;31m# the handling of this argument later\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    859\u001b[0m             \u001b[0ms\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;36m20\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 860\u001b[0;31m         \u001b[0msuper\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mScatterPlot\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__init__\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mx\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0ms\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0ms\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    861\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mis_integer\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mc\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;32mand\u001b[0m \u001b[0;32mnot\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcolumns\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mholds_integer\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    862\u001b[0m             \u001b[0mc\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcolumns\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mc\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, data, x, y, **kwargs)\u001b[0m\n\u001b[1;32m    802\u001b[0m             \u001b[0my\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcolumns\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0my\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    803\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mlen\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mx\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_get_numeric_data\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0;36m0\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 804\u001b[0;31m             \u001b[0;32mraise\u001b[0m \u001b[0mValueError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_kind\u001b[0m \u001b[0;34m+\u001b[0m \u001b[0;34m' requires x column to be numeric'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    805\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mlen\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0my\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_get_numeric_data\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0;36m0\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    806\u001b[0m             \u001b[0;32mraise\u001b[0m \u001b[0mValueError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_kind\u001b[0m \u001b[0;34m+\u001b[0m \u001b[0;34m' requires y column to be numeric'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;31mValueError\u001b[0m: scatter requires x column to be numeric"
+     ]
+    }
+   ],
+   "source": [
+    "weather.plot.scatter(x=\"Latitude\", y=\"Humidity (%)\", title=\"Humidity per Latitude\")\n",
+    "plt.savefig('HumidityperLat.png')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "ValueError",
+     "evalue": "scatter requires x column to be numeric",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mValueError\u001b[0m                                Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-12-d3cfa899e362>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mweather\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mplot\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mscatter\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mx\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m\"Latitude\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m\"Cloud Coverage (%)\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mtitle\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m\"Cloud Coverage per Latitude\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      2\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      3\u001b[0m \u001b[0mplt\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msavefig\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'CloudperLat.png'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36mscatter\u001b[0;34m(self, x, y, s, c, **kwds)\u001b[0m\n\u001b[1;32m   3514\u001b[0m             ...                       colormap='viridis')\n\u001b[1;32m   3515\u001b[0m         \"\"\"\n\u001b[0;32m-> 3516\u001b[0;31m         \u001b[0;32mreturn\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mkind\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m'scatter'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mx\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mx\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0my\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mc\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mc\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0ms\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0ms\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwds\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   3517\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   3518\u001b[0m     def hexbin(self, x, y, C=None, reduce_C_function=None, gridsize=None,\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m__call__\u001b[0;34m(self, x, y, kind, ax, subplots, sharex, sharey, layout, figsize, use_index, title, grid, legend, style, logx, logy, loglog, xticks, yticks, xlim, ylim, rot, fontsize, colormap, table, yerr, xerr, secondary_y, sort_columns, **kwds)\u001b[0m\n\u001b[1;32m   2940\u001b[0m                           \u001b[0mfontsize\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mfontsize\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mcolormap\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mcolormap\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mtable\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mtable\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   2941\u001b[0m                           \u001b[0myerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0myerr\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mxerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mxerr\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0msecondary_y\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0msecondary_y\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 2942\u001b[0;31m                           sort_columns=sort_columns, **kwds)\n\u001b[0m\u001b[1;32m   2943\u001b[0m     \u001b[0m__call__\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__doc__\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mplot_frame\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__doc__\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   2944\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36mplot_frame\u001b[0;34m(data, x, y, kind, ax, subplots, sharex, sharey, layout, figsize, use_index, title, grid, legend, style, logx, logy, loglog, xticks, yticks, xlim, ylim, rot, fontsize, colormap, table, yerr, xerr, secondary_y, sort_columns, **kwds)\u001b[0m\n\u001b[1;32m   1971\u001b[0m                  \u001b[0myerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0myerr\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mxerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mxerr\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1972\u001b[0m                  \u001b[0msecondary_y\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0msecondary_y\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0msort_columns\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0msort_columns\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 1973\u001b[0;31m                  **kwds)\n\u001b[0m\u001b[1;32m   1974\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1975\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m_plot\u001b[0;34m(data, x, y, subplots, ax, kind, **kwds)\u001b[0m\n\u001b[1;32m   1738\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0misinstance\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mABCDataFrame\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1739\u001b[0m             plot_obj = klass(data, x=x, y=y, subplots=subplots, ax=ax,\n\u001b[0;32m-> 1740\u001b[0;31m                              kind=kind, **kwds)\n\u001b[0m\u001b[1;32m   1741\u001b[0m         \u001b[0;32melse\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1742\u001b[0m             raise ValueError(\"plot kind %r can only be used for data frames\"\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, data, x, y, s, c, **kwargs)\u001b[0m\n\u001b[1;32m    858\u001b[0m             \u001b[0;31m# the handling of this argument later\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    859\u001b[0m             \u001b[0ms\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;36m20\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 860\u001b[0;31m         \u001b[0msuper\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mScatterPlot\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__init__\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mx\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0ms\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0ms\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    861\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mis_integer\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mc\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;32mand\u001b[0m \u001b[0;32mnot\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcolumns\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mholds_integer\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    862\u001b[0m             \u001b[0mc\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcolumns\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mc\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, data, x, y, **kwargs)\u001b[0m\n\u001b[1;32m    802\u001b[0m             \u001b[0my\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcolumns\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0my\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    803\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mlen\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mx\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_get_numeric_data\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0;36m0\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 804\u001b[0;31m             \u001b[0;32mraise\u001b[0m \u001b[0mValueError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_kind\u001b[0m \u001b[0;34m+\u001b[0m \u001b[0;34m' requires x column to be numeric'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    805\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mlen\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0my\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_get_numeric_data\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0;36m0\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    806\u001b[0m             \u001b[0;32mraise\u001b[0m \u001b[0mValueError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_kind\u001b[0m \u001b[0;34m+\u001b[0m \u001b[0;34m' requires y column to be numeric'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;31mValueError\u001b[0m: scatter requires x column to be numeric"
+     ]
+    }
+   ],
+   "source": [
+    "weather.plot.scatter(x=\"Latitude\", y=\"Cloud Coverage (%)\", title=\"Cloud Coverage per Latitude\")\n",
+    "\n",
+    "plt.savefig('CloudperLat.png')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "ValueError",
+     "evalue": "scatter requires x column to be numeric",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mValueError\u001b[0m                                Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-13-11387d747965>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mweather\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mplot\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mscatter\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mx\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m\"Latitude\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m\"Wind Speed (mph)\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mtitle\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m\"Wind Speed per Latitude\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      2\u001b[0m \u001b[0mplt\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msavefig\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m'WindperLat.png'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36mscatter\u001b[0;34m(self, x, y, s, c, **kwds)\u001b[0m\n\u001b[1;32m   3514\u001b[0m             ...                       colormap='viridis')\n\u001b[1;32m   3515\u001b[0m         \"\"\"\n\u001b[0;32m-> 3516\u001b[0;31m         \u001b[0;32mreturn\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mkind\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m'scatter'\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mx\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mx\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0my\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mc\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mc\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0ms\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0ms\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwds\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   3517\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   3518\u001b[0m     def hexbin(self, x, y, C=None, reduce_C_function=None, gridsize=None,\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m__call__\u001b[0;34m(self, x, y, kind, ax, subplots, sharex, sharey, layout, figsize, use_index, title, grid, legend, style, logx, logy, loglog, xticks, yticks, xlim, ylim, rot, fontsize, colormap, table, yerr, xerr, secondary_y, sort_columns, **kwds)\u001b[0m\n\u001b[1;32m   2940\u001b[0m                           \u001b[0mfontsize\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mfontsize\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mcolormap\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mcolormap\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mtable\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mtable\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   2941\u001b[0m                           \u001b[0myerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0myerr\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mxerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mxerr\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0msecondary_y\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0msecondary_y\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 2942\u001b[0;31m                           sort_columns=sort_columns, **kwds)\n\u001b[0m\u001b[1;32m   2943\u001b[0m     \u001b[0m__call__\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__doc__\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mplot_frame\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__doc__\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   2944\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36mplot_frame\u001b[0;34m(data, x, y, kind, ax, subplots, sharex, sharey, layout, figsize, use_index, title, grid, legend, style, logx, logy, loglog, xticks, yticks, xlim, ylim, rot, fontsize, colormap, table, yerr, xerr, secondary_y, sort_columns, **kwds)\u001b[0m\n\u001b[1;32m   1971\u001b[0m                  \u001b[0myerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0myerr\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mxerr\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mxerr\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1972\u001b[0m                  \u001b[0msecondary_y\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0msecondary_y\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0msort_columns\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0msort_columns\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 1973\u001b[0;31m                  **kwds)\n\u001b[0m\u001b[1;32m   1974\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1975\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m_plot\u001b[0;34m(data, x, y, subplots, ax, kind, **kwds)\u001b[0m\n\u001b[1;32m   1738\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0misinstance\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mABCDataFrame\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1739\u001b[0m             plot_obj = klass(data, x=x, y=y, subplots=subplots, ax=ax,\n\u001b[0;32m-> 1740\u001b[0;31m                              kind=kind, **kwds)\n\u001b[0m\u001b[1;32m   1741\u001b[0m         \u001b[0;32melse\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1742\u001b[0m             raise ValueError(\"plot kind %r can only be used for data frames\"\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, data, x, y, s, c, **kwargs)\u001b[0m\n\u001b[1;32m    858\u001b[0m             \u001b[0;31m# the handling of this argument later\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    859\u001b[0m             \u001b[0ms\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;36m20\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 860\u001b[0;31m         \u001b[0msuper\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mScatterPlot\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__init__\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mx\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0my\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0ms\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0ms\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    861\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mis_integer\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mc\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;32mand\u001b[0m \u001b[0;32mnot\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcolumns\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mholds_integer\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    862\u001b[0m             \u001b[0mc\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcolumns\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mc\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m//anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, data, x, y, **kwargs)\u001b[0m\n\u001b[1;32m    802\u001b[0m             \u001b[0my\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcolumns\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0my\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    803\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mlen\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mx\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_get_numeric_data\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0;36m0\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 804\u001b[0;31m             \u001b[0;32mraise\u001b[0m \u001b[0mValueError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_kind\u001b[0m \u001b[0;34m+\u001b[0m \u001b[0;34m' requires x column to be numeric'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    805\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mlen\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mdata\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0my\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_get_numeric_data\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0;36m0\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    806\u001b[0m             \u001b[0;32mraise\u001b[0m \u001b[0mValueError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_kind\u001b[0m \u001b[0;34m+\u001b[0m \u001b[0;34m' requires y column to be numeric'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;31mValueError\u001b[0m: scatter requires x column to be numeric"
+     ]
+    }
+   ],
+   "source": [
+    "weather.plot.scatter(x=\"Latitude\", y=\"Wind Speed (mph)\", title=\"Wind Speed per Latitude\")\n",
+    "plt.savefig('WindperLat.png')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
